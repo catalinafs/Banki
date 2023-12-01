@@ -8,7 +8,7 @@ const theme = createTheme({
         },
     },
     typography: {
-        fontFamily: 'Glacial Indifference, Glacial Indifference Bold, Glacial Indifference Italic',
+        fontFamily: 'Arial, sans-serif',
     },
     components: {
         MuiTypography: {
@@ -92,7 +92,8 @@ const theme = createTheme({
                 {
                     props: { variant: "contained" },
                     style: {
-                        backgroundColor: "#39d894",
+                        color: '#f8f8f8',
+                        backgroundColor: "#27b478",
                         ":hover": {
                             borderColor: "#39d894",
                         },

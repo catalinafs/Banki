@@ -1,4 +1,5 @@
-import Typography from '@mui/material/Typography';
+import { Typography } from '@mui/material';
+import colors from '../../utils/colors';
 
 const NotFound = () => {
     return (
