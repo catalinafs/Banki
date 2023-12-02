@@ -27,48 +27,41 @@ const Home = () => {
         <Layout NavBarLinks={links}>
             <Container maxWidth="md">
                 <Stack
-                marginTop={30}
+                    marginTop={8}
                     paddingX={6}
                     paddingY={8}
                     spacing={5}
                     borderRadius='10px'
+                    bgcolor='rgba(33, 33, 33, 0.41)'
+                    boxShadow='0 0px 15px rgba(0, 0, 0, 0.1)'
+                    border='1px solid rgba(33, 33, 33, 0.15)'
                     sx={{
-                        backgroundColor: 'rgba(33, 33, 33, 0.41)',
-                        backdropFilter: 'blur(10px)',
-                        // backdropFilter: 'blur(4.4px)',
-                        boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
-                        border: '1px solid rgba(33, 33, 33, 0.15)'
+                        backdropFilter: 'blur(4.4px)',
                     }}
-                    // sx={{
-                    //     backgroundColor: 'rgba(33, 33, 33, 0.75)',
-                    //     backdropFilter: 'blur(12px) saturate(180%)',
-                    // }}
                 >
                     <Stack
                         direction='row'
-                        alignItems='center'
+                        alignItems='baseline'
                         justifyContent='space-between'
                     >
                         <Stack direction='row' alignItems='center' spacing={1}>
                             <Typography
                                 variant="h2"
                                 color={colors.text}
-                                fontSize={{ md: '35px' }}
+                                fontSize={{ md: '30px' }}
                                 fontWeight={600}
-                            // textAlign='left'
                             >Welcome back,</Typography>
                             <Typography
                                 variant="body1"
                                 color={colors.primary}
-                                fontSize={{ md: '40px' }}
+                                fontSize={{ md: '30px' }}
                                 fontWeight={800}
-                            // textAlign='right'
                             >Catalina</Typography>
                         </Stack>
                         <Typography
                             variant="h4"
                             color={colors.text}
-                        >012</Typography>
+                        >No. 012</Typography>
                     </Stack>
                     <Typography
                         variant="h5"

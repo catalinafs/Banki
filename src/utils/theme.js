@@ -41,7 +41,9 @@ const theme = createTheme({
                 root: {
                     "& .MuiOutlinedInput-root": {
                         fontWeight: 500,
-                        color: "#39d894",
+                        // color: "#83893e",
+                        color: "#f8f8f8",
+                        // color: "#39d894",
                         borderRadius: "8px",
                         "&.Mui-disabled": {
                             backgroundColor: "#180f0c",
@@ -94,8 +96,9 @@ const theme = createTheme({
                     style: {
                         color: '#f8f8f8',
                         backgroundColor: "#27b478",
+                        border: 0,
                         ":hover": {
-                            borderColor: "#39d894",
+                            backgroundColor: "#26a76fdc",
                         },
                     },
                 },

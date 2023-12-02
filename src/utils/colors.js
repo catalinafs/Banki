@@ -9,6 +9,7 @@ const colors = {
     text: "#ffffff",
     white: "#ffffff",
     black: '#252726',
+    grey: '#3d3d3d',
     lightText: "#f8f8f8",
     success: '#2e7d32',
     error: '#d32f2f',
