@@ -1,3 +1,4 @@
+import { Link as LinkWithoutStyles, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import {
     AppBar,
@@ -13,19 +14,19 @@ import {
     Tooltip,
     Typography
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import { Link as LinkWithoutStyles, useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
+import MenuIcon from '@mui/icons-material/Menu';
 import colors from '../utils/colors';
 
 const Link = styled(LinkWithoutStyles)({
     textDecoration: 'none',
 });
 
-const NavBar = ({ links, navigateTo = '' }) => {
-    const router = useNavigate();
+const NavBar = ({ links, navigateTo = '/home' }) => {
     const [anchorElNav, setAnchorElNav] = useState();
     const [anchorElUser, setAnchorElUser] = useState();
+
+    const navigate = useNavigate();
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -39,9 +40,15 @@ const NavBar = ({ links, navigateTo = '' }) => {
         setAnchorElNav(null);
     };
 
+    const handleLogOut = () => {
+        localStorage.clear();
+    };
+
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+        handleLogOut();
     };
+
 
     return (
         <AppBar
@@ -131,12 +138,13 @@ const NavBar = ({ links, navigateTo = '' }) => {
                                 let pathActive = window.location.pathname === path;
                                 let linkActive = pathActive ? 'contained' : 'text';
                                 let colorText = pathActive ? colors.text : colors.primary;
-                                console.log(linkActive)
+
                                 return (
                                     <Button
                                         key={id}
                                         variant={linkActive}
                                         sx={{ color: colorText }}
+                                        onClick={() => navigate(path)}
                                     >{page}</Button>
                                 );
                             })

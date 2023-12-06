@@ -25,9 +25,9 @@ const Field = styled(Input)({
 const TextField = ({
     label,
     name,
-    placeholder,
-    value,
-    error,
+    placeholderText,
+    valueState,
+    err,
     helper,
     eventOnChange,
     inputLabelProps
@@ -38,9 +38,9 @@ const TextField = ({
             type='text'
             size='small'
             name={name}
-            placeholder={placeholder}
-            value={value}
-            error={error}
+            placeholder={placeholderText}
+            value={valueState}
+            error={err}
             helperText={helper}
             onChange={eventOnChange}
             InputLabelProps={inputLabelProps}

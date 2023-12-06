@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material/styles";
+// import { TextFieldClasses } from "@mui/material";
 
 const theme = createTheme({
     palette: {
@@ -6,6 +7,9 @@ const theme = createTheme({
             main: "#212121",
             contrastText: "#ffffff",
         },
+        secondary: {
+            main: '#fff !important'
+        }
     },
     typography: {
         fontFamily: 'Arial, sans-serif',
@@ -39,6 +43,7 @@ const theme = createTheme({
         MuiTextField: {
             styleOverrides: {
                 root: {
+                    color: "#fff",
                     "& .MuiOutlinedInput-root": {
                         fontWeight: 500,
                         // color: "#83893e",
@@ -51,6 +56,16 @@ const theme = createTheme({
                     },
                 },
             },
+            variants: [
+                {
+                    props: { variant: "standard" },
+                    style: {
+                        "input::before": {
+                            borderBottomColor: "red !important"
+                        }
+                    }
+                }
+            ]
         },
         MuiLoadingButton: {
             defaultProps: {

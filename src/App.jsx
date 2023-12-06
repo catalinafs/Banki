@@ -6,7 +6,7 @@ import theme from './utils/theme';
 import Home from './pages/home';
 
 function App() {
-  // ! delete this later
+  // ! delete
   console.log(window.location.pathname);
 
   return (
