@@ -40,13 +40,15 @@ const NavBar = ({ links, navigateTo = '/home' }) => {
         setAnchorElNav(null);
     };
 
-    const handleLogOut = () => {
-        localStorage.clear();
-    };
-
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
-        handleLogOut();
+    };
+
+    // todo: si te elimina los datos del localstorage pero no te redirige al login
+
+    const handleLogOut = () => {
+        localStorage.clear();
+        // setAnchorElUser(null);
     };
 
 
@@ -131,7 +133,7 @@ const NavBar = ({ links, navigateTo = '/home' }) => {
                         direction='row'
                         alignItems='center'
                         justifyContent='center'
-                        spacing='60px'
+                        spacing='40px'
                     >
                         {
                             links?.map(({ id, page, path }) => {
@@ -177,7 +179,7 @@ const NavBar = ({ links, navigateTo = '/home' }) => {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            <MenuItem onClick={handleCloseUserMenu}>
+                            <MenuItem onClick={handleLogOut}>
                                 <Typography textAlign="center">Logout</Typography>
                             </MenuItem>
                         </Menu>

@@ -12,7 +12,7 @@ const Layout = ({ children, NavBarLinks, navTo }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!localStorage.getItem("token") && !localStorage.getItem("user")) navigate('/');
+        if (!localStorage.getItem("token") && !localStorage.getItem("user")) navigate('/login');
     }, []);
 
     return (

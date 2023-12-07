@@ -40,7 +40,7 @@ const TextField = styled(Input)({
             borderColor: '#27b478',
         },
     },
-    ".css-10czeob-MuiInputBase-root-MuiInput-root:before, :hover .css-10czeob-MuiInputBase-root-MuiInput-root:before": {
+    ".css-10czeob-MuiInputBase-root-MuiInput-root:before, .css-10czeob-MuiInputBase-root-MuiInput-root:hover, .css-10czeob-MuiInputBase-root-MuiInput-root:before": {
         borderBottom: "2px solid #27b478"
         // borderBottom: "2px solid #f8f8f8"
     },
@@ -92,9 +92,10 @@ const Login = () => {
             // ! delete
             console.log(loading);
             console.log(form);
-
+            
             const { data } = await bank.post('login', form);
-
+            // ! delete
+            // console.log(data)
             setIsSuccessful(data.msg);
 
             localStorage.setItem("token", data.token);
@@ -120,7 +121,7 @@ const Login = () => {
     }
 
     return (
-        <Layout navTo='/'>
+        <Layout navTo='/login'>
             <Container maxWidth="sm">
                 <PruebaAlert />
                 <Stack

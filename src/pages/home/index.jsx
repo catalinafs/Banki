@@ -3,6 +3,7 @@ import Layout from '../../components/Layout';
 import { useTheme } from '@emotion/react';
 import { Stack, Container, useMediaQuery, Typography } from '@mui/material';
 import colors from '../../utils/colors';
+import useUser from '../../hooks/useUser';
 
 const links = [
     {
@@ -23,11 +24,13 @@ const links = [
 ];
 
 const Home = () => {
+    // todo: preguntar sobre esta cosa
+    // const { user } = useUser();
+    // console.log('esto es user: ', user)
+
     const theme = useTheme();
     const md = useMediaQuery(theme.breakpoints.up("md"));
 
-    // ! delete
-    console.log(md)
     const { name, money, account } = JSON.parse(localStorage.getItem("user"));
 
     return (
@@ -60,7 +63,7 @@ const Home = () => {
                             spacing={{ xs: .5, md: 1 }}
                         >
                             {/* // ? check: definir como se va a terminar viendo el home */}
-                            {/* {
+                            {
                                 md
                                     ?
                                     <Typography
@@ -70,16 +73,17 @@ const Home = () => {
                                         fontWeight={600}
                                     >Welcome{md ? ' back' : ''},</Typography>
                                     : ''
-                            } */}
+                            }
                             <Typography
                                 variant="body1"
                                 color={colors.primary}
                                 fontSize={{ xs: '28px', md: '30px' }}
                                 fontWeight={800}
-                                padding={{ xs: '', sm: '5px 20px' }}
-                                bgcolor={{ xs: '', sm: '#ffffff1a' }}
-                                borderBottom={{ xs: '', sm: '5px solid #39d894' }}
-                                borderRadius='250px'
+                            // ? check: definir como se va a terminar viendo el home
+                            // padding={{ xs: '', sm: '5px 20px' }}
+                            // bgcolor={{ xs: '', sm: '#ffffff1a' }}
+                            // borderBottom={{ xs: '', sm: '5px solid #39d894' }}
+                            // borderRadius='250px'
                             >{useCapitalize(name)}</Typography>
                         </Stack>
                         <Typography
@@ -90,7 +94,7 @@ const Home = () => {
                             color={colors.text}
                             textAlign='right'
                         // ? check: definir como se va a terminar viendo el home
-                        // padding='5px 15px 2px 15px'
+                        // padding='5px 15px 5px 15px'
                         // bgcolor='#ffffff1a'
                         // borderBottom='5px solid #f8f8f8'
                         // borderRadius='250px'

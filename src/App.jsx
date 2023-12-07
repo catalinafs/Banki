@@ -13,8 +13,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <Routes>
-          <Route path={'/'} element={<Login />} />
+          <Route path={'/login'} element={<Login />} />
           <Route path={"/home"} element={<Home />} />
+          <Route path={"/transfers"} element={<h1>transferencias</h1>} />
           <Route path={"/404"} element={<NotFound />} />
           <Route path={"*"} element={<Navigate to="/404" />} />
         </Routes>
