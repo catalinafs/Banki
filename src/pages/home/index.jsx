@@ -3,35 +3,30 @@ import Layout from '../../components/Layout';
 import { useTheme } from '@emotion/react';
 import { Stack, Container, useMediaQuery, Typography } from '@mui/material';
 import colors from '../../utils/colors';
-import useUser from '../../hooks/useUser';
-
-const links = [
-    {
-        id: 1,
-        page: 'Home',
-        path: '/home',
-    },
-    {
-        id: 2,
-        page: 'Transfers',
-        path: '/transfers',
-    },
-    {
-        id: 3,
-        page: 'Movements',
-        path: '/movements',
-    },
-];
 
 const Home = () => {
-    // todo: preguntar sobre esta cosa
-    // const { user } = useUser();
-    // console.log('esto es user: ', user)
-
     const theme = useTheme();
     const md = useMediaQuery(theme.breakpoints.up("md"));
 
-    const { name, money, account } = JSON.parse(localStorage.getItem("user"));
+    const { id, name, money, account } = JSON.parse(localStorage.getItem("user"));
+
+    const links = [
+        {
+            id: 1,
+            page: 'Home',
+            path: '/home',
+        },
+        {
+            id: 2,
+            page: 'Transfers',
+            path: '/transfers',
+        },
+        {
+            id: 3,
+            page: 'Movements',
+            path: `/movements/${id}`,
+        },
+    ];
 
     return (
         <Layout NavBarLinks={links}>

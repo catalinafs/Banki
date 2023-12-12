@@ -1,12 +1,17 @@
 import { TextField as Input } from '@mui/material';
 import styled from '@emotion/styled';
+import colors from '../utils/colors';
 
 const Field = styled(Input)({
     '& label': {
-        color: '#39d894',
-        paddingRight: 1
+        fontWeight: 500,
+        color: '#fff',
     },
-    '& .MuiInput-underline:after': {
+    '& label.Mui-focused': {
+        fontWeight: 600,
+        color: '#39d894',
+    },
+    '& .Mui-focused.MuiInput-underline:after': {
         borderBottomColor: '#39d894',
     },
     '& .MuiOutlinedInput-root': {
@@ -20,30 +25,36 @@ const Field = styled(Input)({
             borderColor: '#27b478',
         },
     },
+    ".css-10czeob-MuiInputBase-root-MuiInput-root:before, .css-10czeob-MuiInputBase-root-MuiInput-root:hover, .css-10czeob-MuiInputBase-root-MuiInput-root:before": {
+        borderBottom: "2px solid #27b478"
+    },
+    "input": {
+        color: colors.white
+    }
 });
 
 const TextField = ({
-    label,
-    name,
+    labelField,
+    inputType = 'text',
+    nameField,
     placeholderText,
     valueState,
     err,
     helper,
     eventOnChange,
-    inputLabelProps
 }) => {
     return (
         <Field
-            label={label}
-            type='text'
+            variant='standard'
+            label={labelField}
+            type={inputType}
             size='small'
-            name={name}
+            name={nameField}
             placeholder={placeholderText}
             value={valueState}
             error={err}
             helperText={helper}
             onChange={eventOnChange}
-            InputLabelProps={inputLabelProps}
         />
     );
 }

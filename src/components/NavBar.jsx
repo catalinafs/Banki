@@ -48,6 +48,7 @@ const NavBar = ({ links, navigateTo = '/home' }) => {
 
     const handleLogOut = () => {
         localStorage.clear();
+        navigate('/login')
         // setAnchorElUser(null);
     };
 

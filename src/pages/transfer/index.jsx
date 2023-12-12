@@ -3,7 +3,6 @@ import useValidate from '../../hooks/useValidate';
 import useAxios from '../../hooks/useAxios';
 import Layout from '../../components/Layout';
 import TextField from '../../components/TextField';
-import { useTheme } from '@emotion/react';
 import {
     Backdrop,
     Button,
@@ -11,29 +10,25 @@ import {
     Container,
     Snackbar,
     Stack,
-    Typography,
-    useMediaQuery,
 } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 import colors from '../../utils/colors';
 
 const initForm = {
-    account: '',
-    password: ''
+    account_recive: '',
+    amount: ''
 };
 
 const regex = {
-    account: /^\d+$/,
-    password: /^[0-9a-zA-Z!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]{8,15}/,
+    account_recive: /^\d+$/,
+    amount: /^\d+$/,
 };
 
-const Login = () => {
+const Transfer = () => {
     const [form, setForm] = useState(initForm);
 
     const { formError, accionValidations } = useValidate(initForm);
-    const { request, isError, loading, isSuccessful } = useAxios();
-
-    const theme = useTheme();
-    const md = useMediaQuery(theme.breakpoints.up("md"));
+    const { request, isError, isSuccessful, loading } = useAxios();
 
     const handleOnChange = ({ target }) => {
         const { value, name } = target;
@@ -53,14 +48,47 @@ const Login = () => {
             return;
         }
 
-        const { token, user } = await request('login', '/home', 'POST', form);
+        const user = JSON.parse(localStorage.getItem("user"));
 
-        localStorage.setItem("token", token);
-        localStorage.setItem("user", JSON.stringify(user));
+        const body = {
+            amount: parseInt(form.amount),
+            account_recive: form.account_recive,
+        };
+
+        body.id = user.id;
+        body.token = localStorage.getItem("token");
+
+        const headers = {
+            Authorization: 'Bearer ' + localStorage.getItem("token"),
+        };
+
+        const { new_money } = await request('movements', '/home', 'POST', body, headers);
+
+        localStorage.setItem("user", JSON.stringify({ ...user, money: new_money }));
     }
 
+    const { id } = JSON.parse(localStorage.getItem("user"));
+
+    const links = [
+        {
+            id: 1,
+            page: 'Home',
+            path: '/home',
+        },
+        {
+            id: 2,
+            page: 'Transfers',
+            path: '/transfers',
+        },
+        {
+            id: 3,
+            page: 'Movements',
+            path: `/movements/${id}`,
+        },
+    ];
+
     return (
-        <Layout navTo='/login'>
+        <Layout navTo='/login' NavBarLinks={links}>
             <Container maxWidth="sm">
                 <Stack
                     marginTop={{ xs: '50px', md: '60px' }}
@@ -72,35 +100,6 @@ const Login = () => {
                         borderRadius: '20px',
                     }}
                 >
-                    <Typography
-                        variant='h4'
-                        color={colors.primary}
-                        fontSize='22px'
-                        margin='10px 0 25px 0'
-                        paddingX='30px'
-                        display='flex'
-                        alignItems='baseline'
-                        justifyContent='center'
-                    >
-                        {
-                            !md
-                                ? '¡Welcome!'
-                                : (
-                                    <>
-                                        ¡Welcome to your <Typography
-                                            variant="body1"
-                                            color={colors.text}
-                                            fontSize='inherit'
-                                            fontWeight={600}
-                                            marginLeft={1}
-                                            marginRight={.2}
-                                        >trusted bank
-                                        </Typography>!
-                                    </>
-                                )
-                        }
-                    </Typography>
-
                     {/* Form */}
                     <Stack
                         component='form'
@@ -110,34 +109,39 @@ const Login = () => {
                         onSubmit={handleSubmit}
                     >
                         <Stack spacing='18px'>
-                            {/* Username input */}
+                            {/* account recive input */}
                             <TextField
-                                labelField='Account'
+                                labelField='Account Recive'
                                 inputType='text'
-                                nameField='account'
-                                placeholderText='Enter your account'
-                                valueState={form?.account}
-                                err={!!formError?.account}
-                                helper={formError?.account}
+                                nameField='account_recive'
+                                placeholderText='Enter the account recive'
+                                valueState={form?.account_recive}
+                                err={!!formError?.account_recive}
+                                helper={formError?.account_recive}
                                 eventOnChange={handleOnChange}
                             />
 
-                            {/* Password input */}
+                            {/* money input */}
                             <TextField
-                                labelField='Password'
-                                inputType='password'
-                                nameField='password'
-                                placeholderText='Enter your password'
-                                valueState={form?.password}
-                                err={!!formError?.password}
-                                helper={formError?.password}
+                                labelField='Amount'
+                                inputType='text'
+                                nameField='amount'
+                                placeholderText='Enter an amount'
+                                valueState={form?.amount}
+                                err={!!formError?.amount}
+                                helper={formError?.amount}
                                 eventOnChange={handleOnChange}
                             />
                         </Stack>
 
                         {/* Log in Button */}
-                        <Button variant='contained' type='submit'>
-                            Register
+                        <Button
+                            variant='contained'
+                            type='submit'
+                            sx={{ fontSize: '15px' }}
+                            endIcon={<SendIcon />}
+                        >
+                            Transfer
                         </Button>
                     </Stack>
                 </Stack>
@@ -148,20 +152,23 @@ const Login = () => {
                 open={Boolean(isSuccessful)}
                 message={isSuccessful}
                 autoHideDuration={2000}
+                onClose={() => setIsSuccessful('')}
                 sx={{ '.MuiSnackbarContent-message': { color: colors.success } }}
             />
 
             {/* Error Alert */}
+            {console.log('existe el error: ', isError)}
             <Snackbar
                 open={Boolean(isError)}
-                message={isError}
+                message={`${isError}`}
                 autoHideDuration={2000}
+                onClose={() => setIsError('')}
                 sx={{ '.MuiSnackbarContent-message': { color: colors.error } }}
             />
 
             {/* Backdrop for the loading */}
             <Backdrop
-                sx={{ color: colors.white, zIndex: '100' }}
+                sx={{ color: '#fff', zIndex: '100' }}
                 open={loading}
             >
                 <CircularProgress color="inherit" />
@@ -170,4 +177,4 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default Transfer;
