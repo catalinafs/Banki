@@ -10,26 +10,26 @@ const Home = () => {
 
     const { id, name, money, account } = JSON.parse(localStorage.getItem("user"));
 
-    const links = [
-        {
-            id: 1,
-            page: 'Home',
-            path: '/home',
-        },
-        {
-            id: 2,
-            page: 'Transfers',
-            path: '/transfers',
-        },
-        {
-            id: 3,
-            page: 'Movements',
-            path: `/movements/${id}`,
-        },
-    ];
+    // const links = [
+    //     {
+    //         id: 1,
+    //         page: 'Home',
+    //         path: '/home',
+    //     },
+    //     {
+    //         id: 2,
+    //         page: 'Transfers',
+    //         path: '/transfers',
+    //     },
+    //     {
+    //         id: 3,
+    //         page: 'Movements',
+    //         path: `/movements/${id}`,
+    //     },
+    // ];
 
     return (
-        <Layout NavBarLinks={links}>
+        <Layout NavBarLinks={true}>
             <Container maxWidth="md">
                 <Stack
                     marginTop={{ xs: 10, md: 10 }}

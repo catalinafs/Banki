@@ -1,10 +1,9 @@
-import { createContext } from "react";
+import { useEffect, createContext } from "react";
+import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import { Stack } from "@mui/material";
 import bgBanki from '/bgBanki.webp'
 import colors from "../utils/colors";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 const Context = createContext();
 
@@ -22,10 +21,10 @@ const Layout = ({ children, NavBarLinks, navTo }) => {
                 width='100%'
                 sx={{
                     bgcolor: colors.background,
-                    background: `center / cover no-repeat url(${bgBanki})`,
+                    background: `center / cover no-repeat fixed url(${bgBanki})`,
                 }}
             >
-                <NavBar links={NavBarLinks} navigateTo={navTo} />
+                <NavBar useLinks={NavBarLinks} navigateTo={navTo} />
                 {children}
             </Stack>
         </Context.Provider>

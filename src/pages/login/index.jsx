@@ -60,7 +60,7 @@ const Login = () => {
     }
 
     return (
-        <Layout navTo='/login'>
+        <Layout navTo='/login' NavBarLinks={false}>
             <Container maxWidth="sm">
                 <Stack
                     marginTop={{ xs: '50px', md: '60px' }}

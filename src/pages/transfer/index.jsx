@@ -67,28 +67,28 @@ const Transfer = () => {
         localStorage.setItem("user", JSON.stringify({ ...user, money: new_money }));
     }
 
-    const { id } = JSON.parse(localStorage.getItem("user"));
+    // const { id } = JSON.parse(localStorage.getItem("user"));
 
-    const links = [
-        {
-            id: 1,
-            page: 'Home',
-            path: '/home',
-        },
-        {
-            id: 2,
-            page: 'Transfers',
-            path: '/transfers',
-        },
-        {
-            id: 3,
-            page: 'Movements',
-            path: `/movements/${id}`,
-        },
-    ];
+    // const links = [
+    //     {
+    //         id: 1,
+    //         page: 'Home',
+    //         path: '/home',
+    //     },
+    //     {
+    //         id: 2,
+    //         page: 'Transfers',
+    //         path: '/transfers',
+    //     },
+    //     {
+    //         id: 3,
+    //         page: 'Movements',
+    //         path: `/movements/${id}`,
+    //     },
+    // ];
 
     return (
-        <Layout navTo='/login' NavBarLinks={links}>
+        <Layout navTo='/home' NavBarLinks={true}>
             <Container maxWidth="sm">
                 <Stack
                     marginTop={{ xs: '50px', md: '60px' }}

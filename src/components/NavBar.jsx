@@ -1,5 +1,6 @@
-import { Link as LinkWithoutStyles, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { Link as LinkWithoutStyles, useNavigate } from 'react-router-dom';
+import useCapitalize from '../hooks/useCapitalize';
 import {
     AppBar,
     Avatar,
@@ -22,11 +23,31 @@ const Link = styled(LinkWithoutStyles)({
     textDecoration: 'none',
 });
 
-const NavBar = ({ links, navigateTo = '/home' }) => {
+const NavBar = ({ useLinks, navigateTo = '/home' }) => {
     const [anchorElNav, setAnchorElNav] = useState();
     const [anchorElUser, setAnchorElUser] = useState();
 
     const navigate = useNavigate();
+
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    const links = [
+        {
+            id: 1,
+            page: 'Home',
+            path: '/home',
+        },
+        {
+            id: 2,
+            page: 'Transfers',
+            path: '/transfers',
+        },
+        {
+            id: 3,
+            page: 'Movements',
+            path: user ? `/movements/${user?.id}` : '/home',
+        },
+    ];
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -44,14 +65,10 @@ const NavBar = ({ links, navigateTo = '/home' }) => {
         setAnchorElUser(null);
     };
 
-    // todo: si te elimina los datos del localstorage pero no te redirige al login
-
     const handleLogOut = () => {
         localStorage.clear();
-        navigate('/login')
-        // setAnchorElUser(null);
+        navigate('/login');
     };
-
 
     return (
         <AppBar
@@ -69,10 +86,10 @@ const NavBar = ({ links, navigateTo = '/home' }) => {
                     style={{
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: links ? 'space-between' : 'center'
+                        justifyContent: useLinks ? 'space-between' : 'center'
                     }}
                 >
-                    <Stack display={{ xs: links ? 'flex' : 'none', md: 'none' }}>
+                    <Stack display={{ xs: useLinks ? 'flex' : 'none', md: 'none' }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenNavMenu} sx={{ p: 0, color: '#3d3d3d' }}>
                                 <MenuIcon />
@@ -95,22 +112,24 @@ const NavBar = ({ links, navigateTo = '/home' }) => {
                             onClose={handleCloseNavMenu}
                         >
                             {
-                                links?.map(({ id, page, path }) => {
-                                    let pathActive = window.location.pathname === path;
-                                    let colorText = pathActive ? colors.primary : colors.black;
+                                useLinks
+                                    ? links.map(({ id, page, path }) => {
+                                        let pathActive = window.location.pathname === path;
+                                        let colorText = pathActive ? colors.primary : colors.black;
 
-                                    return (
-                                        <MenuItem key={id} onClick={handleCloseNavMenu}>
-                                            <Link
-                                                to={path}
-                                            >
-                                                <Typography textAlign="center" color={colorText}>
-                                                    {page}
-                                                </Typography>
-                                            </Link>
-                                        </MenuItem>
-                                    );
-                                })
+                                        return (
+                                            <MenuItem key={id} onClick={handleCloseNavMenu}>
+                                                <Link
+                                                    to={path}
+                                                >
+                                                    <Typography textAlign="center" color={colorText}>
+                                                        {page}
+                                                    </Typography>
+                                                </Link>
+                                            </MenuItem>
+                                        );
+                                    })
+                                    : ''
                             }
                         </Menu>
                     </Stack>
@@ -137,31 +156,37 @@ const NavBar = ({ links, navigateTo = '/home' }) => {
                         spacing='40px'
                     >
                         {
-                            links?.map(({ id, page, path }) => {
-                                let pathActive = window.location.pathname === path;
-                                let linkActive = pathActive ? 'contained' : 'text';
-                                let colorText = pathActive ? colors.text : colors.primary;
+                            useLinks
+                                ? links.map(({ id, page, path }) => {
+                                    let pathActive = window.location.pathname === path;
+                                    let linkActive = pathActive ? 'contained' : 'text';
+                                    let colorText = pathActive ? colors.text : colors.primary;
 
-                                return (
-                                    <Button
-                                        key={id}
-                                        variant={linkActive}
-                                        sx={{ color: colorText }}
-                                        onClick={() => navigate(path)}
-                                    >{page}</Button>
-                                );
-                            })
+                                    return (
+                                        <Button
+                                            key={id}
+                                            variant={linkActive}
+                                            sx={{ color: colorText }}
+                                            onClick={() => navigate(path)}
+                                        >{page}</Button>
+                                    );
+                                })
+                                : ''
                         }
                     </Stack>
 
-                    <Box sx={{ flexGrow: 0, display: links ? 'block' : 'none' }}>
+                    <Box sx={{ flexGrow: 0, display: useLinks ? 'block' : 'none' }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, }}>
-                                <Avatar
-                                    alt="Catalina Forero"
-                                    src="/static/images/avatar/2.jpg"
-                                    sx={{ backgroundColor: colors.greenDark }}
-                                />
+                                {
+                                    user ?
+                                        <Avatar
+                                            alt={`${useCapitalize(user?.name)}`}
+                                            src="/static/images/avatar/2.jpg"
+                                            sx={{ backgroundColor: colors.greenDark }}
+                                        />
+                                        : ''
+                                }
                             </IconButton>
                         </Tooltip>
                         <Menu
