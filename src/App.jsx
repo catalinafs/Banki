@@ -12,12 +12,13 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <Routes>
+          <Route path={"/"} element={<Navigate to="/login" />} />
           <Route path={'/login'} element={<Login />} />
           <Route path={"/home"} element={<Home />} />
           <Route path={"/transfers"} element={<Transfer />} />
           <Route path={"/movements/:id"} element={<Movements />} />
-          <Route path={"/404"} element={<NotFound />} />
-          <Route path={"*"} element={<Navigate to="/404" />} />
+          <Route path={"/NotFound"} element={<NotFound />} />
+          <Route path={"*"} element={<Navigate to="/NotFound" />} />
         </Routes>
       </Router>
     </ThemeProvider>
