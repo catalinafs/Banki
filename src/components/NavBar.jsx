@@ -91,7 +91,7 @@ const NavBar = ({ useLinks, navigateTo = '/home' }) => {
                 >
                     <Stack display={{ xs: useLinks ? 'flex' : 'none', md: 'none' }}>
                         <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenNavMenu} sx={{ p: 0, color: '#3d3d3d' }}>
+                            <IconButton onClick={handleOpenNavMenu} sx={{ p: 0, color: colors.lightText }}>
                                 <MenuIcon />
                             </IconButton>
                         </Tooltip>
