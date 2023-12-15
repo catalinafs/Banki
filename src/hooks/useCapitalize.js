@@ -6,7 +6,7 @@ const useCapitalize = (str) => {
         pieces[i] = j + pieces[i].substr(1);
     }
 
-    return pieces.join(" ")
+    return pieces.join(" ");
 }
 
 export default useCapitalize;

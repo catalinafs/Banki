@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material/styles";
-// import { TextFieldClasses } from "@mui/material";
 
 const theme = createTheme({
     palette: {
@@ -46,9 +45,7 @@ const theme = createTheme({
                     color: "#fff",
                     "& .MuiOutlinedInput-root": {
                         fontWeight: 500,
-                        // color: "#83893e",
                         color: "#f8f8f8",
-                        // color: "#39d894",
                         borderRadius: "8px",
                         "&.Mui-disabled": {
                             backgroundColor: "#180f0c",

@@ -67,26 +67,6 @@ const Transfer = () => {
         localStorage.setItem("user", JSON.stringify({ ...user, money: new_money }));
     }
 
-    // const { id } = JSON.parse(localStorage.getItem("user"));
-
-    // const links = [
-    //     {
-    //         id: 1,
-    //         page: 'Home',
-    //         path: '/home',
-    //     },
-    //     {
-    //         id: 2,
-    //         page: 'Transfers',
-    //         path: '/transfers',
-    //     },
-    //     {
-    //         id: 3,
-    //         page: 'Movements',
-    //         path: `/movements/${id}`,
-    //     },
-    // ];
-
     return (
         <Layout navTo='/home' NavBarLinks={true}>
             <Container maxWidth="sm">
@@ -152,7 +132,6 @@ const Transfer = () => {
                 open={Boolean(isSuccessful)}
                 message={isSuccessful}
                 autoHideDuration={2000}
-                onClose={() => setIsSuccessful('')}
                 sx={{ '.MuiSnackbarContent-message': { color: colors.success } }}
             />
 
@@ -162,7 +141,6 @@ const Transfer = () => {
                 open={Boolean(isError)}
                 message={`${isError}`}
                 autoHideDuration={2000}
-                onClose={() => setIsError('')}
                 sx={{ '.MuiSnackbarContent-message': { color: colors.error } }}
             />
 
