@@ -1,8 +1,11 @@
-# React + Vite
+# Banki
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Banki is an innovative and reliable bank that stands out for providing quality financial services to its clients.
 
-Currently, two official plugins are available:
+## License
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[MIT](https://choosealicense.com/licenses/mit/)
+
+## Authors
+
+- [@catalinafs](https://github.com/catalinafs)
