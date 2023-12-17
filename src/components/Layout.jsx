@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import { Stack } from "@mui/material";
-import bgBanki from '/bgBanki.webp'
+import bgBanki from '/bgBanki.webp';
 import colors from "../utils/colors";
 
 const Layout = ({ children, NavBarLinks, navTo }) => {
