@@ -23,7 +23,7 @@ const useValidate = ({ initForm }) => {
             if (!regex[key].test(form[key])) {
                 setFormError((props) => ({
                     ...props,
-                    [key]: 'regex mal'
+                    [key]: `The ${key} field contain invalid characters`
                 }));
                 return true;
             } else {

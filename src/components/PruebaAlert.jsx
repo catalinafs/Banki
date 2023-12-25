@@ -1,15 +1,10 @@
-import { Box, Snackbar } from '@mui/material';
-import React, { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { Snackbar } from '@mui/material';
 
-function PruebaAlert({ colorAlert = '#489558', changeMsg, mensaje="" }) {
-  
-    // const [mostrarToast, setMostrarToast] = useState(false);
-
+function PruebaAlert({ colorAlert = '#489558', changeMsg, mensaje = "" }) {
     useEffect(() => {
         if (mensaje) {
-            // setMostrarToast(true);
             setTimeout(() => {
-                // setMostrarToast(false);
                 changeMsg('');
             }, 5000);
         }
@@ -17,16 +12,13 @@ function PruebaAlert({ colorAlert = '#489558', changeMsg, mensaje="" }) {
 
 
     return (
-        <div>
-            {/* <button onClick={handleButtonClick}>Mostrar Toast</button> */}
-            <Snackbar
-                open={Boolean(mensaje)}
-                message={mensaje}
-                autoHideDuration={2000}
-                onClose={() => changeMsg(false)}
-                sx={{ '.MuiSnackbarContent-message': {color: colorAlert} }}
-            />
-        </div>
+        <Snackbar
+            open={Boolean(mensaje)}
+            message={mensaje}
+            autoHideDuration={2000}
+            onClose={() => changeMsg(false)}
+            sx={{ '.MuiSnackbarContent-message': { color: colorAlert } }}
+        />
     );
 }
 
