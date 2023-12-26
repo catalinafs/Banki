@@ -11,6 +11,8 @@ const Movements = () => {
     const { request, isError, isSuccessful, loading } = useAxios();
 
     useEffect(() => {
+        document.title = "Movements | Banki";
+
         const { id, account } = JSON.parse(localStorage.getItem("user"));
 
         setAccount(account);

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useValidate from '../../hooks/useValidate';
 import useAxios from '../../hooks/useAxios';
 import Layout from '../../components/Layout';
@@ -29,6 +29,10 @@ const Transfer = () => {
 
     const { formError, accionValidations } = useValidate(initForm);
     const { request, isError, isSuccessful, loading } = useAxios();
+
+    useEffect(() => {
+        document.title = "Transfers | Banki";
+    }, []);
 
     const handleOnChange = ({ target }) => {
         const { value, name } = target;

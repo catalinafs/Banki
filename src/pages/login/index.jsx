@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useValidate from '../../hooks/useValidate';
 import useAxios from '../../hooks/useAxios';
 import Layout from '../../components/Layout';
@@ -34,6 +34,10 @@ const Login = () => {
 
     const theme = useTheme();
     const md = useMediaQuery(theme.breakpoints.up("md"));
+
+    useEffect(() => {
+        document.title = "Login | Banki";
+    }, []);
 
     const handleOnChange = ({ target }) => {
         const { value, name } = target;

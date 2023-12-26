@@ -3,8 +3,13 @@ import Layout from '../../components/Layout';
 import { useTheme } from '@emotion/react';
 import { Stack, Container, useMediaQuery, Typography } from '@mui/material';
 import colors from '../../utils/colors';
+import { useEffect } from 'react';
 
 const Home = () => {
+    useEffect(() => {
+        document.title = "Home | Banki";
+    }, []);
+
     const theme = useTheme();
     const md = useMediaQuery(theme.breakpoints.up("md"));
 
